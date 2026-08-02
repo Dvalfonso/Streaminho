@@ -3,6 +3,8 @@ spring:
     url: jdbc:postgresql://localhost:5434/streaming_db
     username: streaminho
     password: streaminho
+jwt:
+  secret: 1234secret
 
   jpa:
     hibernate:
