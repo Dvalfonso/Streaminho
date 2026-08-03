@@ -1,4 +1,4 @@
-package org.streaminho.app.streaminho.models;
+package org.streaminho.app.streaminho.models.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = true) //oauth
     private String password;
     @CreationTimestamp
     @Column(nullable = false, updatable = false)    private LocalDateTime createdAt;

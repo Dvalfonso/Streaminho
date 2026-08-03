@@ -7,7 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.streaminho.app.streaminho.models.User;
+import org.streaminho.app.streaminho.models.dao.User;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
