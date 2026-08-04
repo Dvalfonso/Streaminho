@@ -1,5 +1,11 @@
 package org.streaminho.app.streaminho.configs;
 
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -10,6 +16,19 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("Streaminho API")
                         .version("v1")
-                        .description("REST API para la plataforma de streaming"));
+                        .description("REST API para la plataforma de streaming"))
+                .components(new Components()
+                        .addSecuritySchemes(
+                                "Bearer Authentication",
+                                new SecurityScheme()
+                                        .name("Bearer Authentication")
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")
+                        ))
+                .addSecurityItem(
+                        new SecurityRequirement()
+                                .addList("Bearer Authentication")
+                );
     }
 }
