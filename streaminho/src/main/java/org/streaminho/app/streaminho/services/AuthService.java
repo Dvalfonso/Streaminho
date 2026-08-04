@@ -8,7 +8,6 @@ import org.streaminho.app.streaminho.models.dao.Role;
 import org.streaminho.app.streaminho.models.dao.User;
 import org.streaminho.app.streaminho.models.dto.RegisterResponse;
 import org.streaminho.app.streaminho.models.dto.RegisterUserDto;
-import org.streaminho.app.streaminho.models.dto.UserDto;
 import org.streaminho.app.streaminho.repositories.UserRepository;
 import org.streaminho.app.streaminho.security.JwtService;
 
@@ -26,7 +25,7 @@ public class AuthService {
 
     @Transactional
     public RegisterResponse registerUser(RegisterUserDto registerUserDto) {
-        if (userRepository.existsByEmail(registerUserDto.email()).isPresent()) {
+        if (userRepository.existsByEmail(registerUserDto.email())) {
             throw new RuntimeException("Email already registered");
         }
 

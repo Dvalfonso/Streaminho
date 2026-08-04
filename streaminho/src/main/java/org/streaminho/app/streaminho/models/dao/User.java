@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "Users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,9 @@ public class User implements UserDetails {
     @Column(nullable = false, updatable = false)    private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+    @Enumerated(EnumType.STRING)
     private AuthProvider authProvider;
+    @Enumerated(EnumType.STRING)
     private Role role;
     private boolean locked;
 
