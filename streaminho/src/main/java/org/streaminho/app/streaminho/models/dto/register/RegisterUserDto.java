@@ -1,4 +1,4 @@
-package org.streaminho.app.streaminho.models.dto;
+package org.streaminho.app.streaminho.models.dto.register;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

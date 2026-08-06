@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import org.streaminho.app.streaminho.models.dao.AuthProvider;
 import org.streaminho.app.streaminho.models.dao.Role;
 import org.streaminho.app.streaminho.models.dao.User;
-import org.streaminho.app.streaminho.models.dto.RegisterResponse;
-import org.streaminho.app.streaminho.models.dto.RegisterUserDto;
+import org.streaminho.app.streaminho.models.dto.login.LoginRequest;
+import org.streaminho.app.streaminho.models.dto.login.LoginResponse;
+import org.streaminho.app.streaminho.models.dto.register.RegisterResponse;
+import org.streaminho.app.streaminho.models.dto.register.RegisterUserDto;
 import org.streaminho.app.streaminho.repositories.UserRepository;
 import org.streaminho.app.streaminho.security.JwtService;
 
@@ -42,5 +44,9 @@ public class AuthService {
         String token = jwtService.generateToken(user);
 
         return new RegisterResponse(token, user.getId(), user.getUsername(), user.getEmail(), user.getRole());
+    }
+
+    public LoginResponse login(LoginRequest loginRequest) {
+        return new LoginResponse("Asdf");
     }
 }

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5434/streaming_db
-    username: streaminho
-    password: streaminho
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,7 +15,7 @@ spring:
       enabled: false
 
 jwt:
-  secret: eDSfwfHkssE4xBuBepPqXheEhDhfW99pmZPxcMDo5HA
+  secret: ${JWT_SECRET}
 
 logging:
   level:
