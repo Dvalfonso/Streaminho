@@ -43,8 +43,8 @@ public class SecurityConfig {
 
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/swagger-ui/**",
-                                "/api/export/**",
+                        .requestMatchers("/api/auth/**",
+                                "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html").permitAll() // Publicly open routes
                         .anyRequest().authenticated() // All other routes require login
