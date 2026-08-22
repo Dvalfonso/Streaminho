@@ -13,7 +13,8 @@ public class VideoAsset {
     @Id
     @GeneratedValue
     private Long id;
-    private String storageKey;
+    private String source;
+    private String url;
     private String format;
     private String size;
     private String duration;

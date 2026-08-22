@@ -1,13 +1,17 @@
 package org.streaminho.app.streaminho.catalog.movies.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "movies")
 @NoArgsConstructor
+@Getter
+@Setter
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +21,7 @@ public class Movie {
     private String description;
     private LocalDate releaseDate;
     private String duration;
-    private byte[] poster;
+    private String posterUrl;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "videoAsset_id", referencedColumnName = "id")
     private VideoAsset videoAsset;
