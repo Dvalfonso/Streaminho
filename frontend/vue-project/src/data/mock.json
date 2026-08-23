@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Interstellar",
+    "description": "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+    "releaseDate": "2014-11-06",
+    "duration": "169 min",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+  },
+  {
+    "id": 2,
+    "title": "El Padrino",
+    "description": "La historia de la familia Corleone bajo el patriarca Vito Corleone.",
+    "releaseDate": "1972-03-24",
+    "duration": "175 min",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/eEslWkXpxb0KrIXhBjZgvyM8DEz.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Parasite",
+    "description": "Una familia pobre se infiltra en la vida de una familia adinerada, con consecuencias inesperadas.",
+    "releaseDate": "2019-05-30",
+    "duration": "132 min",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Whiplash",
+    "description": "Un joven baterista de jazz busca la perfección bajo la presión de un profesor implacable.",
+    "releaseDate": "2014-10-10",
+    "duration": "107 min",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/oPxnRhyAIzJKGUEDSpV0J8FyOYC.jpg"
+  }
+]
