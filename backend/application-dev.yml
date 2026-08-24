@@ -17,6 +17,9 @@ spring:
 jwt:
   secret: ${JWT_SECRET}
 
+tmdb:
+  api-token: ${TMDB_API_READ_ACCESS_TOKEN}
+
 logging:
   level:
     org.hibernate.SQL: DEBUG

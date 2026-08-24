@@ -13,6 +13,7 @@ public record MovieDto(
         String title,
         String description,
         LocalDate releaseDate,
-        String duration
+        String duration,
+        String posterPath
 ) {
 }

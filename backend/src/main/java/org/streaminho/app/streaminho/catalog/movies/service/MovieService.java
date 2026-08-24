@@ -40,6 +40,6 @@ public class MovieService {
     }
 
     private MovieDto toMovieDto(Movie movie) {
-        return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration());
+        return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration(), movie.getPosterUrl());
     }
 }
