@@ -10,7 +10,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'about',
-    // Carga perezosa (Lazy loading) para mejorar el rendimiento
     component: () => import('../views/CatalogView.vue')
   }
 ]

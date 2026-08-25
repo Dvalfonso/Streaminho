@@ -5,9 +5,10 @@ export interface MovieDto {
   description: string
   releaseDate: string
   duration: string
+  posterPath: string | null
+  popularity: number
 }
 
-// Usa /api/movie/{id}/poster
 export interface Movie extends MovieDto {
-  posterUrl: string | undefined
+  posterUrl: string
 }

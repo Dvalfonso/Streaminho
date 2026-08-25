@@ -1,13 +1,24 @@
-import type { Movie } from "@/types/Movie";
-import mockData from '@/data/mock.json'
+import type { Movie, MovieDto } from "@/types/Movie"
 
-const USE_MOCK = true // cambiar para integrar con api
+const API_BASE = 'http://localhost:8080'
+const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w500'
+const POSTER_FALLBACK = 'https://placehold.co/300x450/181818/666?text=Sin+poster'
 
-export async function getPeliculas(): Promise<Movie[]> {
-  if (USE_MOCK) {
-    return mockData as Movie[]
-  }
-  const res = await fetch('apiUrl')
-  if (!res.ok) throw new Error('Error al cargar peliculas')
-  return res.json()
+function joinPosterUrl(posterPath: string | null): string {
+  return posterPath ? `${TMDB_IMG_BASE}${posterPath}` : POSTER_FALLBACK
 }
+
+
+export async function getPopularMovies(): Promise<Movie[]> {
+  
+  const res = await fetch(`${API_BASE}/api/movies/popular`)
+  if (!res.ok) throw new Error('Error loading popular movies')
+  
+  const movies: MovieDto[] = await res.json()
+
+  return movies.map(movie => ({
+    ...movie,
+    posterUrl: joinPosterUrl(movie.posterPath)
+  }))
+}
+

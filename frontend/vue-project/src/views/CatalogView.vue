@@ -3,12 +3,12 @@
 import { ref, onMounted } from 'vue'
 import type { Movie } from '@/types/Movie'
 import MovieCard from '@/components/MovieCard.vue'
-import mockData from '@/data/mock.json'
+import { getPopularMovies } from '@/services/MovieService'
 
 const movies = ref<Movie[]>([])
 
-onMounted(() => {
-  movies.value = mockData
+onMounted(async () => {
+  movies.value = await getPopularMovies()
 })
 </script>
 
