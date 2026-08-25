@@ -82,7 +82,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                //"http://localhost:5173" Cambiar cuando se pueda
+                "http://localhost:5173"
         ));
 
         configuration.setAllowedMethods(List.of(

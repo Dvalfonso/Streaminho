@@ -1,9 +1,11 @@
 package org.streaminho.app.streaminho.catalog.movies.service;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.streaminho.app.streaminho.catalog.movies.models.Movie;
-import org.streaminho.app.streaminho.catalog.movies.models.VideoAsset;
-import org.streaminho.app.streaminho.catalog.movies.models.dto.CreateMovieRequest;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.MovieDto;
 import org.streaminho.app.streaminho.catalog.movies.repository.MovieRepository;
 
@@ -17,29 +19,20 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<String> getAllMovies() {
-        return movieRepository.findAll().stream().map(Movie::getTitle).toList();
+    public List<MovieDto> getPopularMovies(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(
+                page,
+                20,
+                Sort.by(Sort.Direction.DESC, "popularity")
+        );
+
+        List<Movie> movies = movieRepository.findAll(pageable).getContent();
+
+        return movies.stream().map(this::toMovieDto).toList();
     }
 
-    public MovieDto createMovie(CreateMovieRequest createMovieRequest) {
-        if (movieRepository.existsByTitle(createMovieRequest.title())) {
-            throw new IllegalArgumentException("Movie already exist");
-        }
-
-        Movie movie = new Movie();
-        movie.setTitle(createMovieRequest.title());
-        movie.setDescription(createMovieRequest.description());
-        movie.setDuration(createMovieRequest.duration());
-        movie.setReleaseDate(createMovieRequest.releaseDate());
-        movie.setPosterUrl(createMovieRequest.poster());
-        movie.setVideoAsset(new VideoAsset());
-
-        movieRepository.save(movie);
-
-        return toMovieDto(movie);
-    }
 
     private MovieDto toMovieDto(Movie movie) {
-        return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration(), movie.getPosterUrl());
+        return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration(), movie.getPosterUrl(), movie.getPopularity());
     }
 }

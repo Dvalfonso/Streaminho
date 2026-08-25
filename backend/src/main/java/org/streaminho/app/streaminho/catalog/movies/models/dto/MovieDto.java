@@ -14,6 +14,7 @@ public record MovieDto(
         String description,
         LocalDate releaseDate,
         String duration,
-        String posterPath
+        String posterPath,
+        double popularity
 ) {
 }

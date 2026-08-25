@@ -24,6 +24,7 @@ public class Movie {
     private LocalDate releaseDate;
     private String duration;
     private String posterUrl;
+    private double popularity;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "videoAsset_id", referencedColumnName = "id")
     private VideoAsset videoAsset;

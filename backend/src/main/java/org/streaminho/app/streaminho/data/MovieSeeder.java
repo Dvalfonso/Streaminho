@@ -31,6 +31,10 @@ public class MovieSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (movieRepository.count() > 0) {
+            return;
+        }
+
         TmdbMoviePopularResponse response = restClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/popular")

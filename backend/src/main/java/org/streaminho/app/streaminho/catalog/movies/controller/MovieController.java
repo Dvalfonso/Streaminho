@@ -21,9 +21,9 @@ public class MovieController {
         this.dataInitializerTest = dataInitializerTest;
     }
 
-    @GetMapping
-    public ResponseEntity<List<String>> getAllMovies() {
-        return ResponseEntity.ok(movieService.getAllMovies());
+    @GetMapping("/popular")
+    public ResponseEntity<List<MovieDto>> getPopularMovies(@RequestParam(defaultValue = "0") int page) {
+        return ResponseEntity.ok(movieService.getPopularMovies(page));
     }
 
     /**
