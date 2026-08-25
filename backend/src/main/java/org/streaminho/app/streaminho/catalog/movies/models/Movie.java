@@ -16,8 +16,10 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long tmdbId;
     @Column(name = "title", nullable = false)
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private LocalDate releaseDate;
     private String duration;

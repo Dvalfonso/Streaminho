@@ -1,4 +1,4 @@
-package org.streaminho.app.streaminho.catalog.movies.data;
+package org.streaminho.app.streaminho.data;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -25,9 +25,9 @@ public class DataInitializerTest {
 
         String responseBody = restClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/search/movie")
-                        .queryParam("query", "Interstellar")
+                        .path("/movie/popular")
                         .queryParam("language", "en-US")
+                        .queryParam("page", "1")
                         .build())
                 .header("Authorization", "Bearer " + tmdbToken)
                 .retrieve()

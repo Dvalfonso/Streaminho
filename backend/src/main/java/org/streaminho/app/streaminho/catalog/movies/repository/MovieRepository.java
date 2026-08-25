@@ -5,4 +5,5 @@ import org.streaminho.app.streaminho.catalog.movies.models.Movie;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     boolean existsByTitle(String title);
+    boolean existsByTmdbId(Long tmdbId);
 }
