@@ -6,11 +6,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: CatalogView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/CatalogView.vue')
   }
 ]
 

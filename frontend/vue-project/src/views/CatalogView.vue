@@ -14,7 +14,6 @@ onMounted(async () => {
 
 <template>
   <div class="catalog">
-    <h2>Catálogo</h2>
     <div class="grid">
       <MovieCard
         v-for="movie in movies"
@@ -33,8 +32,11 @@ onMounted(async () => {
 }
 
 .catalogo h2 {
-  color: #fff;
-  margin-bottom: 16px;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  padding-left: 4px;
+  border-left: 4px solid #e50914;
+  padding-left: 12px;
 }
 
 .grid {
