@@ -13,7 +13,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="catalog">
+  <section class="catalog container">
+    <div class="section-header">
+      <span class="eyebrow">Right now</span>
+      <h2>Popular</h2>
+    </div>
+
     <div class="grid">
       <MovieCard
         v-for="movie in movies"
@@ -21,27 +26,39 @@ onMounted(async () => {
         :movie="movie"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
-.catalogo {
-  background: #0a0a0a;
-  min-height: 100vh;
-  padding: 24px 40px;
+.catalog {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-8);
 }
 
-.catalogo h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  padding-left: 4px;
-  border-left: 4px solid #e50914;
-  padding-left: 12px;
+.section-header {
+  margin-bottom: var(--space-5);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-1);
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  color: var(--color-text);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--space-5);
 }
 </style>

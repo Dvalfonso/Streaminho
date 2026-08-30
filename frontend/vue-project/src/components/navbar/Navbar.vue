@@ -6,14 +6,16 @@ const searchInput = ref('')
 
 <template>
   <header class="navbar">
-    <RouterLink to="/" class="logo">STREAMINHO</RouterLink>
+    <div class="navbar-inner container">
+      <RouterLink to="/" class="logo">STREAMINHO</RouterLink>
 
-    <input
-      v-model="searchInput"
-      type="text"
-      placeholder="Search movies"
-      class="search"
-    />
+      <input
+        v-model="searchInput"
+        type="text"
+        placeholder="Search movies"
+        class="search"
+      />
+    </div>
   </header>
 </template>
 
@@ -22,33 +24,43 @@ const searchInput = ref('')
   position: sticky;
   top: 0;
   z-index: 10;
+  background: rgba(11, 12, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
-  background: #0a0a0a;
-  border-bottom: 1px solid #222;
+  height: 72px;
 }
 
 .logo {
-  color: #e50914;
-  font-weight: 800;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--color-accent);
 }
 
 .search {
-  background: #181818;
-  border: 1px solid #333;
-  border-radius: 4px;
-  padding: 8px 12px;
-  color: #fff;
-  width: 260px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  width: 280px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.search::placeholder {
+  color: var(--color-text-muted);
 }
 
 .search:focus {
-  border-color: #e50914;
+  border-color: var(--color-accent);
 }
 </style>
