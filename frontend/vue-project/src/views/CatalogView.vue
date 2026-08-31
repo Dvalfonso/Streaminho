@@ -1,14 +1,24 @@
 <!-- src/views/CatalogoView.vue -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import type { Movie } from '@/types/Movie'
 import MovieCard from '@/components/MovieCard.vue'
 import { getPopularMovies } from '@/services/MovieService'
+import { useSearchStore } from '@/stores/search'
 
 const movies = ref<Movie[]>([])
+const searchStore = useSearchStore()
 
 onMounted(async () => {
   movies.value = await getPopularMovies()
+})
+
+const filteredMovies = computed(() => {
+  const q = searchStore.query.trim().toLowerCase()
+  if (!q) return movies.value
+  return movies.value.filter(movie =>
+    movie.title.toLowerCase().includes(q)
+  )
 })
 </script>
 
@@ -21,7 +31,7 @@ onMounted(async () => {
 
     <div class="grid">
       <MovieCard
-        v-for="movie in movies"
+        v-for="movie in filteredMovies"
         :key="movie.id"
         :movie="movie"
       />

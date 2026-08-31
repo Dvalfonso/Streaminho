@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useSearchStore } from '@/stores/search';
 import { ref } from 'vue'
 
-const searchInput = ref('')
+const searchStore = useSearchStore()
 </script>
 
 <template>
@@ -10,7 +11,7 @@ const searchInput = ref('')
       <RouterLink to="/" class="logo">STREAMINHO</RouterLink>
 
       <input
-        v-model="searchInput"
+        v-model="searchStore.query"
         type="text"
         placeholder="Search movies"
         class="search"
