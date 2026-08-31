@@ -3,10 +3,12 @@ package org.streaminho.app.streaminho.catalog.movies.service;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.streaminho.app.streaminho.catalog.movies.models.Movie;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.MovieDto;
+import org.streaminho.app.streaminho.catalog.movies.models.dto.MovieReproductionDto;
 import org.streaminho.app.streaminho.catalog.movies.repository.MovieRepository;
 
 import java.util.List;
@@ -34,5 +36,11 @@ public class MovieService {
 
     private MovieDto toMovieDto(Movie movie) {
         return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration(), movie.getPosterUrl(), movie.getPopularity());
+    }
+
+    public MovieReproductionDto getMovie(Long id) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+
+        return new MovieReproductionDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getReleaseDate(), movie.getDuration(), movie.getPosterUrl(), movie.getPopularity());
     }
 }

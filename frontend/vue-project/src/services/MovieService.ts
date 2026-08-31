@@ -22,3 +22,14 @@ export async function getPopularMovies(): Promise<Movie[]> {
   }))
 }
 
+export async function getMovieById(id: number): Promise<Movie> {
+  const res = await fetch(`${API_BASE}/api/movies/${id}`)
+  if (!res.ok) throw new Error('Error loading movie')
+
+  const movie: MovieDto = await res.json()
+
+  return {
+    ...movie,
+    posterUrl: joinPosterUrl(movie.posterPath)
+  }
+}

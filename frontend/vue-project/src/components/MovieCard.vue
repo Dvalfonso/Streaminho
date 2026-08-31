@@ -4,20 +4,33 @@
  defineProps<{
   movie: Movie
 }>()
+
+function onImgError(e: Event) {
+  const img = e.target as HTMLImageElement
+  img.src = 'https://placehold.co/300x450/15171c/8a8f98?text=No+poster'
+}
 </script>
 
 <template>
-  <div class="card">
-    <img :src="movie.posterUrl" :alt="movie.title" class="poster" />
+  <RouterLink :to="`/movies/${movie.id}`" class="card">
+    <div class="poster-wrap">
+      <img
+        :src="movie.posterUrl"
+        :alt="movie.title"
+        class="poster"
+        @error="onImgError"
+      />
+    </div>
     <div class="info">
       <h3>{{ movie.title }}</h3>
       <p class="meta">{{ movie.releaseDate.slice(0, 4) }} · {{ movie.duration }}</p>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <style scoped>
 .card {
+  display: block;
   background: #181818;
   border-radius: 8px;
   overflow: hidden;
