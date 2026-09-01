@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -25,9 +27,8 @@ public class Movie {
     private String duration;
     private String posterUrl;
     private double popularity;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "videoAsset_id", referencedColumnName = "id")
-    private VideoAsset videoAsset;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Trailer> trailers = new ArrayList<>();
 
     @Override
     public String toString() {
