@@ -36,6 +36,9 @@ public class MovieSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (movieRepository.count() > 0) {
+            return;
+        }
 
         TmdbMoviePopularResponse response = restClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -74,6 +77,10 @@ public class MovieSeeder implements CommandLineRunner {
     }
 
     private void fetchAndSaveTrailers(Movie movie) {
+        if (movieRepository.count() > 0) {
+            return;
+        }
+
         TmdbVideoResponse videoResponse = restClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{id}/videos")
