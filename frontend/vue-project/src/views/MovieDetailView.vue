@@ -1,19 +1,27 @@
-<!-- src/views/MovieDetailView.vue -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import type { Movie } from '@/types/Movie'
 import { getMovieById } from '@/services/MovieService'
+import type { TrailerDto } from '@/types/Trailer'
+import { getMovieTrailers } from '@/services/TrailerService'
+import TrailerList from '@/components/trailerList/TrailerList.vue'
 
 const route = useRoute()
 const movie = ref<Movie | null>(null)
+const trailers = ref<TrailerDto[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
     const id = Number(route.params.id)
-    movie.value = await getMovieById(id)
+    const [movieData, trailersData] = await Promise.all([
+      getMovieById(id),
+      getMovieTrailers(id)
+    ])
+    movie.value = movieData
+    trailers.value = trailersData
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Unknown error'
   } finally {
@@ -27,13 +35,17 @@ onMounted(async () => {
     <p v-if="loading" class="state">Loading...</p>
     <p v-else-if="error" class="state">{{ error }}</p>
 
-    <div v-else-if="movie" class="content">
-      <img :src="movie.posterUrl" :alt="movie.title" class="poster" />
-      <div class="info">
-        <h1>{{ movie.title }}</h1>
-        <p class="meta">{{ movie.releaseDate.slice(0, 4) }} · {{ movie.duration }}</p>
-        <p class="description">{{ movie.description }}</p>
+    <div v-else-if="movie">
+      <div class="content">
+        <img :src="movie.posterUrl" :alt="movie.title" class="poster" />
+        <div class="info">
+          <h1>{{ movie.title }}</h1>
+          <p class="meta">{{ movie.releaseDate.slice(0, 4) }} · {{ movie.duration }}</p>
+          <p class="description">{{ movie.description }}</p>
+        </div>
       </div>
+
+      <TrailerList :trailers="trailers" />
     </div>
   </section>
 </template>
