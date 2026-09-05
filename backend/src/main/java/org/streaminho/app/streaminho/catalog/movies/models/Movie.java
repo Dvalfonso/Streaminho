@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.streaminho.app.streaminho.catalog.providers.models.MovieAvailability;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class Movie {
     private double popularity;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Trailer> trailers = new ArrayList<>();
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MovieAvailability> availabilities = new ArrayList<>();
 
     @Override
     public String toString() {
