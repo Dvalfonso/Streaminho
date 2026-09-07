@@ -6,22 +6,28 @@ import { getMovieById } from '@/services/MovieService'
 import type { TrailerDto } from '@/types/Trailer'
 import { getMovieTrailers } from '@/services/TrailerService'
 import TrailerList from '@/components/trailerList/TrailerList.vue'
+import type { StreamingProviderDto } from '@/types/StreamingProvider'
+import { getWatchProviders } from '@/services/StreamingProviderService'
 
 const route = useRoute()
 const movie = ref<Movie | null>(null)
 const trailers = ref<TrailerDto[]>([])
+const providers = ref<StreamingProviderDto[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
     const id = Number(route.params.id)
-    const [movieData, trailersData] = await Promise.all([
+    const [movieData, trailersData, providersData] = await Promise.all([
       getMovieById(id),
-      getMovieTrailers(id)
+      getMovieTrailers(id),
+      getWatchProviders(id)
     ])
     movie.value = movieData
     trailers.value = trailersData
+    providers.value = providersData
+
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Unknown error'
   } finally {
@@ -44,6 +50,8 @@ onMounted(async () => {
           <p class="description">{{ movie.description }}</p>
         </div>
       </div>
+
+      <WhereToWatch :providers="providers" />
 
       <TrailerList :trailers="trailers" />
     </div>

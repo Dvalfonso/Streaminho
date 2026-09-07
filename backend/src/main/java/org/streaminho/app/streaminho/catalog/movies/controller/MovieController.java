@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.MovieReproductionDto;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.TrailerDto;
+import org.streaminho.app.streaminho.catalog.providers.models.dtos.StreamingProviderDto;
 import org.streaminho.app.streaminho.data.DataInitializerTest;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.CreateMovieRequest;
 import org.streaminho.app.streaminho.catalog.movies.models.dto.MovieDto;
@@ -35,5 +36,10 @@ public class MovieController {
     @GetMapping("/{id}/trailers")
     public ResponseEntity<List<TrailerDto>> getTrailersById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.getTrailersById(id));
+    }
+
+    @GetMapping("/{id}/availability")
+    public ResponseEntity<List<StreamingProviderDto>> getAvailabilityById(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.getAvailabilityById(id));
     }
 }
