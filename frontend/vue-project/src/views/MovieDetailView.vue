@@ -8,6 +8,7 @@ import { getMovieTrailers } from '@/services/TrailerService'
 import TrailerList from '@/components/trailerList/TrailerList.vue'
 import type { StreamingProviderDto } from '@/types/StreamingProvider'
 import { getWatchProviders } from '@/services/StreamingProviderService'
+import WhereToWatch from '@/components/wheroToWatch/WhereToWatch.vue'
 
 const route = useRoute()
 const movie = ref<Movie | null>(null)
